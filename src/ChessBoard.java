@@ -1,7 +1,9 @@
 public class ChessBoard {
     public ChessPiece[][] boardArray = new ChessPiece[8][8]; // creating a field for game
+
     String nowPlayer;
     KingPosition kingPos = new KingPosition(0, 0);
+
     public ChessBoard(String nowPlayer) {
         this.nowPlayer = nowPlayer;
     }
