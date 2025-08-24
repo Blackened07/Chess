@@ -17,7 +17,7 @@ public class KingPosition implements Attackable {
     }
 
     public boolean checkDesk(ChessBoard chessBoard) {
-        findTheKing(chessBoard, chessBoard.nowPlayer);
+        findTheKing(chessBoard);
         return isUnderAttack(chessBoard, getLine(), getColumn());
     }
 
@@ -37,13 +37,13 @@ public class KingPosition implements Attackable {
     }
 
     @Override
-    public KingPosition findTheKing(ChessBoard chessBoard, String nowPlayer) {
+    public KingPosition findTheKing(ChessBoard chessBoard) {
         int kingLine = -1;
         int kingColumn = -1;
         for (int i = 0; i <= 7; i++) {
             for (int k = 0; k <= 7; k++) {
                 if (chessBoard.boardArray[i][k] != null) {
-                    if (nowPlayer.equals(chessBoard.boardArray[i][k].getColor()) && chessBoard.boardArray[i][k].getSymbol().equals("K")) {
+                    if (chessBoard.boardArray[i][k].getColor().equals(chessBoard.nowPlayer) && chessBoard.boardArray[i][k].getSymbol().equals("K")) {
                         kingLine = i;
                         kingColumn = k;
 
