@@ -6,6 +6,10 @@ public abstract class ChessPiece {
         this.color = color;
     }
 
+    public ChessPiece(String color, String symbol) {
+        this.color = color;
+        this.symbol = symbol;
+    }
 
     public abstract String getColor();
     public abstract String getSymbol();

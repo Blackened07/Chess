@@ -25,7 +25,13 @@ public class ChessBoard {
                 }
                 boardArray[endLine][endColumn] = boardArray[startLine][startColumn];
                 boardArray[startLine][startColumn] = null;
-                //findTheKing(this, nowPlayer);
+
+                if (nowPlayerColor().equals("White") && endLine == 7 && boardArray[endLine][endColumn].getSymbol().equals("P") ||
+                        nowPlayerColor().equals("Black") && endLine == 1 && boardArray[endLine][endColumn].getSymbol().equals("P")) {
+                    boardArray[endLine][endColumn] = new Queen(nowPlayerColor());
+
+                }
+                //findTheKing(this, nowPlayer);mo
                if (kingPos.checkDesk(this)) return false;
                this.nowPlayer = this.nowPlayerColor().equals("White") ? "Black" : "White";
 

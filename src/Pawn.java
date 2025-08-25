@@ -3,6 +3,9 @@ public class Pawn extends ChessPiece{
         super(color);
     }
 
+    public Pawn(String color, String symbol) {
+        super(color, symbol);
+    }
 
     @Override
     public String getColor() {
@@ -36,8 +39,7 @@ public class Pawn extends ChessPiece{
                     !chessBoard.boardArray[toLine][toColumn].getColor().equals(color))
                 return true;
 
-            if ((getColor().equals("White") && line == 6 || getColor().equals("Black") && line == 1) &&
-            toLine == line + LDir && chessBoard.boardArray[toLine][toColumn] == null) return true;
+
 
             /* !!!During the "Under Attack" check, the enemy pawn is identified as friendly!!!*/
 
