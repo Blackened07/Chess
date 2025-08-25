@@ -1,4 +1,4 @@
-public class Pawn extends ChessPiece{
+public class Pawn extends ChessPiece {
     public Pawn(String color) {
         super(color);
     }
@@ -21,20 +21,27 @@ public class Pawn extends ChessPiece{
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        if (color.equals("White") && line == 1 && toLine == line + 2 && toColumn == column && chessBoard.boardArray[toLine][toColumn] == null ||
-                color.equals("Black") && line == 6 && toLine == line - 2 && toColumn == column&& chessBoard.boardArray[toLine][toColumn] == null) return true;
-        else if (color.equals("White") && toLine == line + 1 && toColumn == column && chessBoard.boardArray[toLine][toColumn]!= null ||
-        color.equals("Black") && toLine == line - 1 && toColumn == column && chessBoard.boardArray[toLine][toColumn]!= null ) return false;
-        //else if ((color.equals("White") && toLine == line + 1 && toLine == 7 && toColumn == column && chessBoard.boardArray[toLine][toColumn]== null ||
-       //         color.equals("Black") && toLine == line - 1 && toLine == 0 && toColumn == column && chessBoard.boardArray[toLine][toColumn]== null ) {
-        //    chessBoard.boardArray[toLine][toColumn].getSymbol()
-        //}
-        else if (color.equals("White") && toLine == line + 1 && Math.abs(toColumn - column) == 1 &&
-                chessBoard.boardArray[toLine][toColumn] != null && !chessBoard.boardArray[toLine][toColumn].getColor().equals(color) ||
-        color.equals("Black") && toLine == line - 1 && Math.abs(toColumn - column) == 1 &&
-                chessBoard.boardArray[toLine][toColumn] != null && !chessBoard.boardArray[toLine][toColumn].getColor().equals(color)) return true;
-        else if (color.equals("White") && toLine == line + 1 && toColumn == column && (checkPos(toLine) && checkPos(toColumn)) ||
-                color.equals("Black") && toLine == line - 1 && toColumn == column && (checkPos(toLine) && checkPos(toColumn))) return true;
-        else return false;
+        int LDir = getColor().equals("White") ? 1 : -1;
+        if (checkPos(toLine) && checkPos(toColumn)) {
+            if (toColumn == column && chessBoard.boardArray[toLine][toColumn] == null) {
+                if (toLine == line + LDir) return true;
+
+                if ((color.equals("White") && line == 1 || color.equals("Black") && line == 6) &&
+                        toLine == line + LDir * 2 && chessBoard.boardArray[line + LDir][toColumn] == null && chessBoard.boardArray[toLine][toColumn] == null)
+                    return true;
+            }
+            if (color.equals("White") && Math.abs(toColumn - column) == 1 && toLine == line + LDir && chessBoard.boardArray[toLine][toColumn] != null &&
+                    !chessBoard.boardArray[toLine][toColumn].getColor().equals(color) || color.equals("Black") && Math.abs(toColumn - column) == 1 &&
+                    toLine == line + LDir && chessBoard.boardArray[toLine][toColumn] != null &&
+                    !chessBoard.boardArray[toLine][toColumn].getColor().equals(color))
+                return true;
+
+            if ((color.equals("White") && toLine == line + 1 && toLine == 7 && toColumn == column && chessBoard.boardArray[toLine][toColumn] == null ||
+                    color.equals("Black") && toLine == line - 1 && toLine == 0 && toColumn == column && chessBoard.boardArray[toLine][toColumn] == null)) {
+                new Queen(color);
+            } return true;
+
+
+        } else return false;
     }
 }
