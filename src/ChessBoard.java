@@ -27,7 +27,7 @@ public class ChessBoard {
                 boardArray[startLine][startColumn] = null;
 
                 if (nowPlayerColor().equals("White") && endLine == 7 && boardArray[endLine][endColumn].getSymbol().equals("P") ||
-                        nowPlayerColor().equals("Black") && endLine == 1 && boardArray[endLine][endColumn].getSymbol().equals("P")) {
+                        nowPlayerColor().equals("Black") && endLine == 0 && boardArray[endLine][endColumn].getSymbol().equals("P")) {
                     boardArray[endLine][endColumn] = new Queen(nowPlayerColor());
 
                 }
