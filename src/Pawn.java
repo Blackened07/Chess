@@ -1,4 +1,4 @@
-public class Pawn extends ChessPiece {
+public class Pawn extends ChessPiece{
     public Pawn(String color) {
         super(color);
     }
@@ -36,12 +36,16 @@ public class Pawn extends ChessPiece {
                     !chessBoard.boardArray[toLine][toColumn].getColor().equals(color))
                 return true;
 
-            if ((color.equals("White") && toLine == line + 1 && toLine == 7 && toColumn == column && chessBoard.boardArray[toLine][toColumn] == null ||
-                    color.equals("Black") && toLine == line - 1 && toLine == 0 && toColumn == column && chessBoard.boardArray[toLine][toColumn] == null)) {
-                new Queen(color);
-            } return true;
+            if ((getColor().equals("White") && line == 6 || getColor().equals("Black") && line == 1) &&
+            toLine == line + LDir && chessBoard.boardArray[toLine][toColumn] == null) return true;
 
+            /* !!!During the "Under Attack" check, the enemy pawn is identified as friendly!!!*/
 
+           // if ((color.equals("White") && toLine == line + 1 && toLine == 7 && toColumn == column && chessBoard.boardArray[toLine][toColumn] == null ||
+           //       color.equals("Black") && toLine == line - 1 && toLine == 0 && toColumn == column && chessBoard.boardArray[toLine][toColumn] == null)) {
+           //    new Queen(color);
+           //}
         } else return false;
+        return false;
     }
 }
